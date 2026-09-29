@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<!-- AFTER: accessibility-remediated blog. See ../ACCESSIBILITY_REPORT.md for the audit and reasoning. -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>The Quiet Web - Articles on inclusive design</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/app.js" defer></script>
+</head>
+<body>
+  <!-- WCAG 2.4.1 Bypass Blocks -->
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-header" role="banner">
+    <div class="wrap bar">
+      <p class="brand"><a href="./">The Quiet Web</a></p>
+
+      <button id="menu-btn" class="icon-btn menu-btn" aria-expanded="false" aria-controls="site-nav">
+        <span class="sr-only">Menu</span><span aria-hidden="true">&#9776;</span>
+      </button>
+
+      <nav id="site-nav" class="site-nav" aria-label="Main">
+        <ul>
+          <li><a href="./" aria-current="page">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#newsletter">Newsletter</a></li>
+        </ul>
+      </nav>
+
+      <!-- aria-pressed exposes toggle state; label stays constant -->
+      <button id="theme-btn" class="icon-btn" aria-pressed="false">
+        <span aria-hidden="true">&#9790;</span><span class="sr-only">Dark mode</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main" class="wrap" tabindex="-1">
+    <h1>Articles on inclusive design</h1>
+
+    <!-- role=search landmark + visible label (WCAG 3.3.2, 1.3.1) -->
+    <form role="search" id="search-form" class="search" aria-label="Search articles">
+      <label for="q">Search articles</label>
+      <div class="row">
+        <input id="q" type="search" name="q" autocomplete="off" aria-describedby="search-status">
+        <button type="submit" class="btn">Search</button>
+      </div>
+      <p id="search-status" class="status" role="status" aria-live="polite"></p>
+    </form>
+
+    <section aria-labelledby="latest">
+      <h2 id="latest">Latest posts</h2>
+      <ul id="post-list" class="posts">
+        <li class="post" data-title="why slow reading matters">
+          <article aria-labelledby="p1">
+            <figure>
+              <svg viewBox="0 0 120 60" role="img" aria-labelledby="p1-img"><title id="p1-img">Open book with a bookmark</title><rect width="120" height="60" rx="8" fill="#1d4ed8"/><path d="M20 15h35v30H20zM65 15h35v30H65z" fill="#fff"/></svg>
+            </figure>
+            <h3 id="p1"><a href="#post-1">Why slow reading matters</a></h3>
+            <p><time datetime="2026-09-12">12 September 2026</time> &middot; 6 min read</p>
+            <p>Reading slowly builds understanding and memory. Here is how to make room for it.</p>
+          </article>
+        </li>
+        <li class="post" data-title="designing for everyone">
+          <article aria-labelledby="p2">
+            <figure><svg viewBox="0 0 120 60" role="img" aria-labelledby="p2-img"><title id="p2-img">Three overlapping circles</title><rect width="120" height="60" rx="8" fill="#047857"/><circle cx="45" cy="30" r="16" fill="#fff" opacity=".85"/><circle cx="75" cy="30" r="16" fill="#fff" opacity=".6"/></svg></figure>
+            <h3 id="p2"><a href="#post-2">Designing for everyone</a></h3>
+            <p><time datetime="2026-09-03">3 September 2026</time> &middot; 4 min read</p>
+            <p>Good design starts with people, including those who use keyboards and screen readers.</p>
+          </article>
+        </li>
+        <li class="post" data-title="colour contrast made easy">
+          <article aria-labelledby="p3">
+            <figure><svg viewBox="0 0 120 60" role="img" aria-labelledby="p3-img"><title id="p3-img">Half black, half white square</title><rect width="120" height="60" rx="8" fill="#111827"/><rect x="60" width="60" height="60" fill="#fff"/></svg></figure>
+            <h3 id="p3"><a href="#post-3">Colour contrast made easy</a></h3>
+            <p><time datetime="2026-08-25">25 August 2026</time> &middot; 5 min read</p>
+            <p>A short guide to WCAG contrast ratios and the tools that check them for you.</p>
+          </article>
+        </li>
+      </ul>
+      <!-- Loads extra posts; new content is announced via the live region -->
+      <button id="more-btn" class="btn" type="button">Load more posts</button>
+      <p id="more-status" class="status" role="status" aria-live="polite"></p>
+    </section>
+
+    <section id="about" aria-labelledby="about-h">
+      <h2 id="about-h">About</h2>
+      <p>The Quiet Web is a student project exploring how small markup choices make the web usable for everyone.</p>
+    </section>
+
+    <section id="newsletter" aria-labelledby="news-h">
+      <h2 id="news-h">Newsletter</h2>
+      <!-- novalidate: we provide our own accessible error messages -->
+      <form id="news-form" novalidate>
+        <div id="error-summary" class="error-summary" role="alert" tabindex="-1" hidden></div>
+        <div class="field">
+          <label for="name">Name <span class="req">(required)</span></label>
+          <input id="name" name="name" type="text" autocomplete="name" required aria-describedby="name-err">
+          <p id="name-err" class="err" hidden></p>
+        </div>
+        <div class="field">
+          <label for="email">Email <span class="req">(required)</span></label>
+          <input id="email" name="email" type="email" autocomplete="email" required aria-describedby="email-hint email-err">
+          <p id="email-hint" class="hint">We only send one email a month.</p>
+          <p id="email-err" class="err" hidden></p>
+        </div>
+        <button class="btn" type="submit">Subscribe</button>
+        <p id="news-ok" class="ok" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="wrap"><p>&copy; 2026 The Quiet Web. <a href="#main">Back to top</a></p></div>
+  </footer>
+</body>
+</html>

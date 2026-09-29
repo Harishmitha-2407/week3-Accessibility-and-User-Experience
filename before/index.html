@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<!-- BEFORE: deliberately inaccessible baseline used for the initial audit. Do not reuse. -->
+<html>
+<head>
+<meta charset="utf-8"><title>Blog</title>
+<style>
+body{font-family:Arial;background:#fff;color:#999}
+.top{background:#eee;padding:10px}.menu{display:flex;gap:15px}
+.menu div{cursor:pointer;color:#aaa}
+.post{margin:20px;border:1px solid #ddd;padding:10px}
+.post .t{font-size:22px;color:#bbb}
+input{outline:none;border:1px solid #ddd}
+.btn{background:#9cf;color:#fff;padding:8px;display:inline-block;cursor:pointer}
+a{color:#8af}
+</style></head>
+<body>
+<div class="top"><div class="menu"><div onclick="go('home')">Home</div><div onclick="go('about')">About</div><div onclick="go('contact')">Contact</div></div></div>
+<div class="post"><div class="t">Why slow reading matters</div><img src="x.png"><div>Reading slowly builds understanding... <a href="#">click here</a></div></div>
+<div class="post"><div class="t">Designing for everyone</div><div>Good design starts with people... <a href="#">click here</a></div></div>
+<input placeholder="Search"> <div class="btn" onclick="alert('searching')">Go</div>
+<br><br><input placeholder="Email"> <div class="btn" onclick="alert('subscribed')">Subscribe</div>
+</body></html>
